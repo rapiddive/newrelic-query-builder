@@ -1,7 +1,7 @@
 {
   "name": "upscale/newrelic-query-builder",
   "description": "Query builder for New Relic Query Language (NRQL)",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "keywords": ["New Relic", "Newrelic", "Insights", "NRQL", "Query Builder"],
   "homepage": "https://github.com/upscalesoftware/newrelic-query-builder",
   "license": "Apache-2.0",
