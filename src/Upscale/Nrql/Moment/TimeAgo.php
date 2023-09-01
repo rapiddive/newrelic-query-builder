@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Upscale\Nrql\Moment;
 
@@ -12,7 +13,7 @@ class TimeAgo extends MomentAbstract
     /**
      * @var TimePeriod
      */
-    private $period;
+    private TimePeriod $period;
 
     /**
      * @param TimePeriod $period Period towards the past
@@ -25,7 +26,7 @@ class TimeAgo extends MomentAbstract
     /**
      * @return TimePeriod
      */
-    public function getPeriod()
+    public function getPeriod(): TimePeriod
     {
         return $this->period;
     }
@@ -33,7 +34,7 @@ class TimeAgo extends MomentAbstract
     /**
      * {@inheritdoc}
      */
-    public function renderNrql()
+    public function renderNrql(): string
     {
         return $this->period->renderNrql() . ' AGO';
     }

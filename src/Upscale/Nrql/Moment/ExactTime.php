@@ -1,29 +1,29 @@
 <?php
+declare(strict_types=1);
 
 namespace Upscale\Nrql\Moment;
+
+use Carbon\CarbonInterface;
 
 /**
  * Absolute moment in time
  */
 class ExactTime extends MomentAbstract
 {
-    /**
-     * @var \DateTime
-     */
-    private $time;
+    private CarbonInterface $time;
 
     /**
-     * @param \DateTime $time
+     * @param CarbonInterface $time
      */
-    public function __construct(\DateTime $time)
+    public function __construct(CarbonInterface $time)
     {
         $this->time = $time;
     }
 
     /**
-     * @return \DateTime
+     * @return CarbonInterface
      */
-    public function getTime()
+    public function getTime(): CarbonInterface
     {
         return $this->time;
     }
@@ -31,7 +31,7 @@ class ExactTime extends MomentAbstract
     /**
      * {@inheritdoc}
      */
-    public function renderNrql()
+    public function renderNrql(): string
     {
         return "'" . $this->time->format('Y-m-d H:i:s T') . "'";
     }

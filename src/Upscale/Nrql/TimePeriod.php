@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Upscale\Nrql;
+
+use InvalidArgumentException;
 
 /**
  * Period of time of certain duration measured in one of the supported units
@@ -8,42 +11,42 @@ namespace Upscale\Nrql;
 class TimePeriod implements SyntaxRendererInterface
 {
     /**#@+
-     * Units a period duration is measured in 
+     * Units a period duration is measured in
      */
-    const UNIT_MINUTES  = 'minutes';
-    const UNIT_HOURS    = 'hours';
-    const UNIT_DAYS     = 'days';
-    const UNIT_WEEKS    = 'weeks';
+    const UNIT_MINUTES = 'minutes';
+    const UNIT_HOURS = 'hours';
+    const UNIT_DAYS = 'days';
+    const UNIT_WEEKS = 'weeks';
     /**#@-*/
 
     /**
      * @var array
      */
-    protected $availableUnits = array(
+    protected array $availableUnits = [
         self::UNIT_MINUTES,
         self::UNIT_HOURS,
         self::UNIT_DAYS,
         self::UNIT_WEEKS,
-    );
+    ];
 
     /**
      * @var int
      */
-    private $duration;
+    private int $duration;
 
     /**
      * @var string
      */
-    private $unit;
+    private string $unit;
 
     /**
      * @param int $duration
      * @param string $unit Constants self::UNIT_*
      */
-    public function __construct($duration, $unit)
+    public function __construct(int $duration, string $unit)
     {
         if (!in_array($unit, $this->availableUnits)) {
-            throw new \InvalidArgumentException("Unit '$unit' is not supported.");
+            throw new InvalidArgumentException("Unit '$unit' is not supported.");
         }
         $this->duration = $duration;
         $this->unit = $unit;
@@ -52,7 +55,7 @@ class TimePeriod implements SyntaxRendererInterface
     /**
      * @return int
      */
-    public function getDuration()
+    public function getDuration(): int
     {
         return $this->duration;
     }
@@ -60,7 +63,7 @@ class TimePeriod implements SyntaxRendererInterface
     /**
      * @return string
      */
-    public function getUnit()
+    public function getUnit(): string
     {
         return $this->unit;
     }
@@ -68,7 +71,7 @@ class TimePeriod implements SyntaxRendererInterface
     /**
      * {@inheritdoc}
      */
-    public function renderNrql()
+    public function renderNrql(): string
     {
         return $this->duration . ' ' . $this->unit;
     }

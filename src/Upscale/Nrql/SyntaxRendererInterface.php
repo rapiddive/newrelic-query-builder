@@ -1,16 +1,17 @@
 <?php
+declare(strict_types=1);
 
 namespace Upscale\Nrql;
 
 /**
- * Anything that has representation in NRQL syntax 
+ * Anything that has representation in NRQL syntax
  */
 interface SyntaxRendererInterface
 {
     /**
      * Return representation in NRQL syntax
-     * 
+     *
      * @return string
      */
-    public function renderNrql();
+    public function renderNrql(): string;
 }
