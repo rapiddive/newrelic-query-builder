@@ -20,7 +20,7 @@ class TimePeriod implements SyntaxRendererInterface
     /**#@-*/
 
     /**
-     * @var array
+     * @var array<string>
      */
     protected array $availableUnits = [
         self::UNIT_MINUTES,

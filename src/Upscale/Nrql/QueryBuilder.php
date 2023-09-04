@@ -32,7 +32,7 @@ class QueryBuilder implements SyntaxRendererInterface
     /**
      * Rendered parts of a query
      *
-     * @var array
+     * @var array<string,mixed>
      */
     protected array $parts = [
         self::PART_SELECT => '',
@@ -52,7 +52,7 @@ class QueryBuilder implements SyntaxRendererInterface
      * @param array $attributes Attribute names and/or attribute expressions
      * @return $this
      */
-    public function select(array $attributes): static
+    public function select(array $attributes): QueryBuilder
     {
         return $this->setPart(self::PART_SELECT, implode(', ', $attributes));
     }
