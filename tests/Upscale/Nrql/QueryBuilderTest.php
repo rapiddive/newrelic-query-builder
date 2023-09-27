@@ -60,6 +60,12 @@ class QueryBuilderTest extends TestCase
         $this->assertEquals('SELECT * FROM PageView FACET countryCode', $this->query->renderNrql());
     }
 
+    public function testWithTimeZone()
+    {
+        $this->assertSame($this->query, $this->query->withTimeZone("'UTC'"));
+        $this->assertEquals('SELECT * FROM PageView WITH TIMEZONE \'UTC\'', $this->query->renderNrql());
+    }
+
     public function testLimit()
     {
         $this->assertSame($this->query, $this->query->limit(10));
