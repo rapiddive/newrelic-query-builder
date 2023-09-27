@@ -2,7 +2,7 @@
   "name": "upscale/newrelic-query-builder",
   "description": "Query builder for New Relic Query Language (NRQL)",
   "license": "Apache-2.0",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "keywords": [
     "New Relic",
     "Newrelic",
@@ -19,7 +19,7 @@
   ],
   "require": {
     "php": "^7.4 || ^8.0",
-    "nesbot/carbon": "^2.69"
+    "nesbot/carbon": "^2.71"
   },
   "autoload": {
     "psr-4": {

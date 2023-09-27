@@ -27,6 +27,8 @@ class QueryBuilder implements SyntaxRendererInterface
     const PART_UNTIL = 'UNTIL';
     const PART_COMPARE_WITH = 'COMPARE WITH';
     const PART_TIME_SERIES = 'TIMESERIES';
+
+    const PART_WITH_TIMEZONE = 'WITH TIMEZONE';
     /**#@-*/
 
     /**
@@ -44,17 +46,16 @@ class QueryBuilder implements SyntaxRendererInterface
         self::PART_UNTIL => '',
         self::PART_COMPARE_WITH => '',
         self::PART_TIME_SERIES => '',
+        self::PART_WITH_TIMEZONE => ''
     ];
 
     /**
-     * Assign SELECT statement to specify what the query is reporting
-     *
-     * @param array $attributes Attribute names and/or attribute expressions
+     * @param string|null $timezone
      * @return $this
      */
-    public function select(array $attributes): QueryBuilder
+    public function withTimeZone(string $timezone = null): static
     {
-        return $this->setPart(self::PART_SELECT, implode(', ', $attributes));
+        return $this->setPart(self::PART_WITH_TIMEZONE, !$timezone ? '' : $timezone);
     }
 
     /**
@@ -76,6 +77,17 @@ class QueryBuilder implements SyntaxRendererInterface
         }
         $this->parts[$part] = $value;
         return $this;
+    }
+
+    /**
+     * Assign SELECT statement to specify what the query is reporting
+     *
+     * @param array $attributes Attribute names and/or attribute expressions
+     * @return $this
+     */
+    public function select(array $attributes): QueryBuilder
+    {
+        return $this->setPart(self::PART_SELECT, implode(', ', $attributes));
     }
 
     /**
